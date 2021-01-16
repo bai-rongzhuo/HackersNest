@@ -6,9 +6,9 @@
 using namespace Game;
 
 GameBoard::GameBoard()
-	:m_player(nullptr)
+	:player_1(nullptr), player_2(nullptr)
 {
-	CreatePlayer();
+	CreatePlayers();
 }
 
 
@@ -23,15 +23,21 @@ void GameBoard::Update()
 	
 }
 
-void Game::GameBoard::CreatePlayer()
+void Game::GameBoard::CreatePlayers()
 {
-	m_player = new GameEngine::Entity();
-	GameEngine::GameEngineMain::GetInstance()->AddEntity(m_player);
+	player_1 = new GameEngine::Entity();
+	player_2 = new GameEngine::Entity();
+	GameEngine::GameEngineMain::GetInstance()->AddEntity(player_1);
+	GameEngine::GameEngineMain::GetInstance()->AddEntity(player_2);
 
-	m_player->SetPos(sf::Vector2f(200.f, 200.f));
-	m_player->SetSize(sf::Vector2f(10.f, 200.f));
+	player_1->SetPos(sf::Vector2f(200.f, 300.f));
+	player_1->SetSize(sf::Vector2f(10.f, 200.f));
 
-	GameEngine::RenderComponent* render = static_cast<GameEngine::RenderComponent*>(m_player->AddComponent<GameEngine::RenderComponent>());
+	player_2->SetPos(sf::Vector2f(600.f, 300.f));
+	player_2->SetSize(sf::Vector2f(10.f, 200.f));
+
+	GameEngine::RenderComponent* render = static_cast<GameEngine::RenderComponent*>(player_1->AddComponent<GameEngine::RenderComponent>());
+	GameEngine::RenderComponent* render2 = static_cast<GameEngine::RenderComponent*>(player_2->AddComponent<GameEngine::RenderComponent>());
 
 	render->SetFillColor(sf::Color::White);
 }
