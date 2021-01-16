@@ -1,5 +1,7 @@
 #include "GameBoard.h"
 
+#include "Game/Components/Player1MovementComponent.h"
+#include "Game/Components/Player2MovementComponent.h"
 #include "GameEngine/GameEngineMain.h"
 
 
@@ -40,4 +42,6 @@ void Game::GameBoard::CreatePlayers()
 	GameEngine::RenderComponent* render2 = static_cast<GameEngine::RenderComponent*>(player_2->AddComponent<GameEngine::RenderComponent>());
 
 	render->SetFillColor(sf::Color::White);
+	player_1->AddComponent<Game::Player1MovementComponent>();
+	player_2->AddComponent<Game::Player2MovementComponent>();
 }
