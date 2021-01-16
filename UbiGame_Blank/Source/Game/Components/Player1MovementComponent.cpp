@@ -1,6 +1,6 @@
 #include "Player1MovementComponent.h"
 #include <SFML/Window/Keyboard.hpp>   //<-- Add the keyboard include in order to get keyboard inputs
-
+#include <math.h>  
 #include "GameEngine/GameEngineMain.h" //<-- Add this include to retrieve the delta time between frames
 
 using namespace Game;
@@ -14,13 +14,14 @@ void Player1MovementComponent::Update()
 
     //By default the displacement is 0,0
     sf::Vector2f displacement{ 0.0f,0.0f };
-
+    
     //The amount of speed that we will apply when input is received
     const float inputAmount = 100.0f;
 
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::W))
     {
         displacement.y -= inputAmount * dt;
+       // displacement.x = 
     }
 
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::S))
