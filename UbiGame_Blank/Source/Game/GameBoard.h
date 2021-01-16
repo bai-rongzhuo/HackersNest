@@ -15,8 +15,16 @@ namespace Game
 		GameBoard();
 		virtual ~GameBoard();
 
-		void Update();		
+		void Update();
 		bool IsGameOver() { return false; }
+
+	private:
+		void CreatePlayer();          // <-- Added Function
+		GameEngine::Entity* player1; // <-- Added Member
+		GameEngine::Entity* player2; // <-- Added Member
+		GameEngine::Entity* score1; // <-- Added Member
+		GameEngine::Entity* score2; // <-- Added Member
+		GameEngine::Entity* background; // <-- Added Member
 	};
 }
 
