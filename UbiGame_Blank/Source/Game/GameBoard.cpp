@@ -4,6 +4,8 @@
 #include "Game/Components/Player2MovementComponent.h"
 #include "Game/Components/BallMovementComponent.h"
 #include "GameEngine/GameEngineMain.h"
+#include "GameEngine/EntitySystem/Components/CollidableComponent.h"
+#include "GameEngine/EntitySystem/Components/CollidablePhysicsComponent.h"
 #include "GameEngine/EntitySystem/Components/SpriteRenderComponent.h" 
 
 
@@ -40,9 +42,11 @@ void Game::GameBoard::CreatePlayers()
 	GameEngine::GameEngineMain::GetInstance()->AddEntity(ball);
 
 	player_1->SetPos(sf::Vector2f(200.f, 400.f));
+	player_1->SetSize(sf::Vector2f(10.f, 105.f));
 	player_1->SetRotation(0);
 
 	player_2->SetPos(sf::Vector2f(600.f, 400.f));
+	player_2->SetSize(sf::Vector2f(10.f, 105.f));
 	player_2->SetRotation(0);
 
 	circle->SetPos(sf::Vector2f(400.f, 400.f));
@@ -54,9 +58,13 @@ void Game::GameBoard::CreatePlayers()
 	GameEngine::SpriteRenderComponent* render = static_cast<GameEngine::SpriteRenderComponent*>(player_1->AddComponent<GameEngine::SpriteRenderComponent>());
 	GameEngine::SpriteRenderComponent* render2 = static_cast<GameEngine::SpriteRenderComponent*>(player_2->AddComponent<GameEngine::SpriteRenderComponent>());
 	GameEngine::SpriteRenderComponent* render3 = circle->AddComponent<GameEngine::SpriteRenderComponent>();
-	GameEngine::SpriteRenderComponent* render4 = ball->AddComponent<GameEngine::SpriteRenderComponent>();
+	GameEngine::SpriteRenderComponent* render4 = static_cast<GameEngine::SpriteRenderComponent*>( ball->AddComponent<GameEngine::SpriteRenderComponent>());
 
-	render->SetTexture(GameEngine::eTexture::Player1);  // <-- Assign the texture to this entity
+	render->SetFillColor(sf::Color::Transparent);
+	render->SetTexture(GameEngine::eTexture::Player1);
+
+	// <-- Assign the texture to this entity
+	render2->SetFillColor(sf::Color::Transparent);
 	render2->SetTexture(GameEngine::eTexture::Player2);  // <-- Assign the texture to this entity
 
 	render3->SetFillColor(sf::Color::Transparent);
@@ -67,6 +75,13 @@ void Game::GameBoard::CreatePlayers()
 	render4->SetTexture(GameEngine::eTexture::ball);
 
 	player_1->AddComponent<Game::Player1MovementComponent>();
+	player_1 ->AddComponent<GameEngine::CollidableComponent>();
+
 	player_2->AddComponent<Game::Player2MovementComponent>();
+	player_2->AddComponent<GameEngine::CollidableComponent>();
+
 	ball->AddComponent<Game::BallMovementComponent>();
+	//ball->AddComponent<GameEngine::CollidableComponent>();
+	ball->AddComponent<GameEngine::AnimationComponent>();
+	ball->AddComponent<GameEngine::CollidablePhysicsComponent>();
 }
