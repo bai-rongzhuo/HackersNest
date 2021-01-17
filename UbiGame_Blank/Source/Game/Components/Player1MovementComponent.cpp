@@ -1,6 +1,6 @@
 #include "Player1MovementComponent.h"
 #include <SFML/Window/Keyboard.hpp>   //<-- Add the keyboard include in order to get keyboard inputs
-
+#include <math.h>  
 #include "GameEngine/GameEngineMain.h" //<-- Add this include to retrieve the delta time between frames
 
 using namespace Game;

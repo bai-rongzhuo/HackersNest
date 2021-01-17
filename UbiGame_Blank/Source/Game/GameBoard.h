@@ -17,10 +17,11 @@ namespace Game
 
 		void Update();		
 		bool IsGameOver() { return false; }
-	private:
+	//protected:
 		void CreatePlayers();
 		GameEngine::Entity* player_1;
 		GameEngine::Entity* player_2;
+		GameEngine::Entity* circle;
 	};
 }
 
