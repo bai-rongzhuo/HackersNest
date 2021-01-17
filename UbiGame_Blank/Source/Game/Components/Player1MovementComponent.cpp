@@ -15,7 +15,7 @@ void Player1MovementComponent::Update()
     const float dt = GameEngine::GameEngineMain::GetTimeDelta();
 
     //By default the displacement is 0,0
-	sf::Vector2f centre{ 400.f, 400.f };
+	sf::Vector2f centre{ 405.f, 400.f };
 
     //The amount of speed that we will apply when input is received
     const float inputAmount = 100.0f;
@@ -23,20 +23,20 @@ void Player1MovementComponent::Update()
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::W))
     {
 		degrees += inputAmount * dt;
-		if (degrees > 165.f) {
-			degrees = 165.f;
+		if (degrees > 166.f) {
+			degrees = 166.f;
 		}
 	}
 
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::S))
     {
 		degrees -= inputAmount * dt;
-		if (degrees < 15.f) {
-			degrees = 15.f;
+		if (degrees < 13.f) {
+			degrees = 13.f;
 		}
 	}
 
-	sf::Vector2f displacement = centre + sf::Vector2f{ 200 * -sin(degrees*pi / 180), 200 * cos(degrees*pi / 180) };
+	sf::Vector2f displacement = centre + sf::Vector2f{ 250 * -sin(degrees*pi / 180), 250 * cos(degrees*pi / 180) };
 	//std::cout << displacement.x << " " << displacement.y << std::endl;
 
     //Update the entity position

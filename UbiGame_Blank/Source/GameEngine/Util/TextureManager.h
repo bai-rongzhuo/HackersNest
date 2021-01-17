@@ -27,7 +27,7 @@ namespace GameEngine
 		{
 		case eTexture::Player1: return "player1.png"; //<-- The name of the image on disk
 		case eTexture::Player2: return "player1.png"; //<-- The name of the image on disk
-		case eTexture::circle: return "circle2b.png";
+		case eTexture::circle: return "Circular_Pong.jpg";
 		case eTexture::ball: return "ball.png";
 		}
 		return "UnknownTexType";

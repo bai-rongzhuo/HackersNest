@@ -51,7 +51,7 @@ void Game::GameBoard::CreatePlayers()
 	player_2->SetRotation(0);
 
 	circle->SetPos(sf::Vector2f(400.f, 400.f));
-	circle->SetSize(sf::Vector2f(500.f, 500.f));
+	circle->SetSize(sf::Vector2f(800.f, 800.f));
 
 	ball->SetPos(sf::Vector2f(400.f, 400.f));
 	ball->SetSize(sf::Vector2f(20.f, 20.f));

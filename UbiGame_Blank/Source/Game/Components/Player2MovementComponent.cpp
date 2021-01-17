@@ -23,20 +23,20 @@ void Player2MovementComponent::Update()
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
 	{
 		degrees += inputAmount * dt;
-		if (degrees > 165.f) {
-			degrees = 165.f;
+		if (degrees > 168.f) {
+			degrees = 168.f;
 		}
 	}
 
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
 	{
 		degrees -= inputAmount * dt;
-		if (degrees < 15.f) {
-			degrees = 15.f;
+		if (degrees < 13.f) {
+			degrees = 13.f;
 		}
 	}
 
-	sf::Vector2f displacement = centre + sf::Vector2f{ 200 * sin(degrees*pi / 180), 200 * cos(degrees*pi / 180) };
+	sf::Vector2f displacement = centre + sf::Vector2f{ 250 * sin(degrees*pi / 180), 250 * cos(degrees*pi / 180) };
 
 	//Update the entity position
 	GetEntity()->SetPos(displacement);
