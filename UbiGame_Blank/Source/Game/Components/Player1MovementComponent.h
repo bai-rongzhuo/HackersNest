@@ -6,8 +6,8 @@ namespace Game
 {
     class Player1MovementComponent : public GameEngine::Component
     {
-	float degrees = 90.0f;
     public:
+		float degrees = 90.0f;
         virtual void Update() override;
         virtual void OnAddToWorld() override;
     };
