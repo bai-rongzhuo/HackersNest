@@ -47,9 +47,6 @@ void CollidablePhysicsComponent::Update()
 		AABBRect colideBox = colComponent->GetWorldAABB();
 		if (myBox.intersects(colideBox, intersection))
 		{
-			collision = true;
-			ballDegree = 90;
-			//GetEntity()->Update();
 			sf::Vector2f pos = GetEntity()->GetPos();
 			if (intersection.width < intersection.height)
 			{
@@ -67,7 +64,6 @@ void CollidablePhysicsComponent::Update()
 			}
 
 			GetEntity()->SetPos(pos);
-			GetEntity()->Update();
 		}
 	}
 }

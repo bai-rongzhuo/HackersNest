@@ -7,7 +7,6 @@
 #include "GameEngine/EntitySystem/Components/CollidableComponent.h"
 #include "GameEngine/EntitySystem/Components/CollidablePhysicsComponent.h"
 #include "GameEngine/EntitySystem/Components/SpriteRenderComponent.h" 
-#include "Game/Components/Player1MovementComponent.h" 
 
 
 using namespace Game;
@@ -82,6 +81,7 @@ void Game::GameBoard::CreatePlayers()
 	player_2->AddComponent<GameEngine::CollidableComponent>();
 
 	ball->AddComponent<Game::BallMovementComponent>();
+	//ball->AddComponent<GameEngine::CollidableComponent>();
 	ball->AddComponent<GameEngine::AnimationComponent>();
 	ball->AddComponent<GameEngine::CollidablePhysicsComponent>();
 }

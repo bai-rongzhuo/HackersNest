@@ -7,10 +7,6 @@ using namespace Game;
 void BallMovementComponent::Update()
 {
 	Component::Update();
-	//if (collision == true) {
-	//	degrees = 90;
-	//}
-	//collision = false;
 
 	//Grabs how much time has passed since last frame
 	const float dt = GameEngine::GameEngineMain::GetTimeDelta();
@@ -22,27 +18,27 @@ void BallMovementComponent::Update()
 	const float inputAmount = 100.0f;
 	float hypotenuse = inputAmount * dt;
 
-	float absDeg = ballDegree;
-	if (ballDegree > 90 && ballDegree <= 180) {
-		absDeg = 180 - ballDegree;
+	float absDeg = degrees;
+	if (degrees > 90 && degrees <= 180) {
+		absDeg = 180 - degrees;
 	}
-	else if (ballDegree > 180 && ballDegree <= 270) {
-		absDeg = ballDegree - 180;
+	else if (degrees > 180 && degrees <= 270) {
+		absDeg = degrees - 180;
 	} 
-	else if (ballDegree > 270) {
-		absDeg = 360 - ballDegree;
+	else if (degrees > 270) {
+		absDeg = 360 - degrees;
 	}
 
 	sf::Vector2f displacement = { hypotenuse * cos(absDeg * pi / 180), hypotenuse * sin(absDeg * pi / 180) };
 	    
-	if (ballDegree <= 90) {
+	if (degrees <= 90) {
 		displacement.y *= -1;
 	}
-	else if (ballDegree <= 180) {
+	else if (degrees <= 180) {
 		displacement.x *= -1;
 		displacement.y *= -1;
 	}
-	else if (ballDegree <= 270) {
+	else if (degrees <= 270) {
 		displacement.x *= -1;
 	}
 
