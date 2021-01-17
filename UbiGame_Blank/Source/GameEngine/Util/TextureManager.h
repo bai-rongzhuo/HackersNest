@@ -15,7 +15,8 @@ namespace GameEngine
 			Player1,
 			Player2,
 			circle,
-			ball,// Replace this for your own enumerations
+			ball,
+			count,// Replace this for your own enumerations
 
 			Count,
 		};
@@ -29,6 +30,7 @@ namespace GameEngine
 		case eTexture::Player2: return "player1.png"; //<-- The name of the image on disk
 		case eTexture::circle: return "Circular_Pong.jpg";
 		case eTexture::ball: return "ball.png";
+		case eTexture::count: return "count.png";
 		}
 		return "UnknownTexType";
 	}

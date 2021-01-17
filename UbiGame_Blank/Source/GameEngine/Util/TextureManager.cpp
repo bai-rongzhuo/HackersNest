@@ -47,6 +47,9 @@ namespace TextureHelper
 {
 	sf::Vector2f GetTextureTileSize(GameEngine::eTexture::type texture)
 	{
+		switch (texture) {
+		case GameEngine::eTexture::count: return sf::Vector2f(41.f, 58.f);
+		}
 		return sf::Vector2f(-1.f, -1.f);
 	}
 }

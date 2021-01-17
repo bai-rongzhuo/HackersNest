@@ -211,6 +211,7 @@ XCOPY "$(SolutionDir)..\SFML-2.5.0\bin" "$(TargetDir)" /S /Y /I</Command>
   </ItemGroup>
   <ItemGroup>
     <Image Include="Resources\circle.png" />
+    <Image Include="Resources\img\count.png" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

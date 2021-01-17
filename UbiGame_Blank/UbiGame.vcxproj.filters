@@ -154,5 +154,8 @@
     <Image Include="Resources\circle.png">
       <Filter>Resource Files</Filter>
     </Image>
+    <Image Include="Resources\img\count.png">
+      <Filter>Resource Files</Filter>
+    </Image>
   </ItemGroup>
 </Project>

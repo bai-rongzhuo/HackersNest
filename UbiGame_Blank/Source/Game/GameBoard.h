@@ -24,6 +24,8 @@ namespace Game
 		GameEngine::Entity* player_2;
 		GameEngine::Entity* circle;
 		GameEngine::Entity* ball;
+		GameEngine::Entity* count1;
+		GameEngine::Entity* count2;
 	};
 }
 
