@@ -2,7 +2,7 @@
 namespace GameEngine
 {
 	class Entity;
-
+	
 	class Component
 	{
 	public:
@@ -16,7 +16,9 @@ namespace GameEngine
 		//No need to call that, entity is set automatically in GameEngineMain
 		void    SetEntity(Entity* ent) { m_entity = ent; }
 		Entity* GetEntity() const { return m_entity; }
-
+		float paddleDegrees;
+		bool collision = false;
+		float ballDegree;
 	private:
 		Entity* m_entity;
 	};
