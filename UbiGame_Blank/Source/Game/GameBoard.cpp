@@ -13,17 +13,15 @@
 using namespace Game;
 
 GameBoard::GameBoard()
-	:player_1(nullptr), player_2(nullptr), circle(nullptr), ball(nullptr)
+	:player_1(nullptr), player_2(nullptr), circle(nullptr), ball(nullptr), score(nullptr)
 {
 	CreatePlayers();
 }
-
 
 GameBoard::~GameBoard()
 {
 
 }
-
 
 void GameBoard::Update()
 {	
@@ -36,11 +34,13 @@ void Game::GameBoard::CreatePlayers()
 	player_2 = new GameEngine::Entity();
 	circle = new GameEngine::Entity();
 	ball = new GameEngine::Entity();
+	score = new GameEngine::Entity();
 
 	GameEngine::GameEngineMain::GetInstance()->AddEntity(player_1);
 	GameEngine::GameEngineMain::GetInstance()->AddEntity(player_2);
 	GameEngine::GameEngineMain::GetInstance()->AddEntity(circle);
 	GameEngine::GameEngineMain::GetInstance()->AddEntity(ball);
+	GameEngine::GameEngineMain::GetInstance()->AddEntity(score);
 
 	player_1->SetPos(sf::Vector2f(200.f, 400.f));
 	player_1->SetSize(sf::Vector2f(10.f, 105.f));
@@ -56,16 +56,15 @@ void Game::GameBoard::CreatePlayers()
 	ball->SetPos(sf::Vector2f(400.f, 400.f));
 	ball->SetSize(sf::Vector2f(20.f, 20.f));
 
+	score->SetPos(sf::Vector2f(45.f, 40.f));
+	score->SetSize(sf::Vector2f(45.f, 45.f));
+
 	GameEngine::SpriteRenderComponent* render = static_cast<GameEngine::SpriteRenderComponent*>(player_1->AddComponent<GameEngine::SpriteRenderComponent>());
 	GameEngine::SpriteRenderComponent* render2 = static_cast<GameEngine::SpriteRenderComponent*>(player_2->AddComponent<GameEngine::SpriteRenderComponent>());
 	GameEngine::SpriteRenderComponent* render3 = circle->AddComponent<GameEngine::SpriteRenderComponent>();
 	GameEngine::SpriteRenderComponent* render4 = static_cast<GameEngine::SpriteRenderComponent*>( ball->AddComponent<GameEngine::SpriteRenderComponent>());
 
-	render->SetFillColor(sf::Color::Transparent);
-	render->SetTexture(GameEngine::eTexture::Player1);
-
-	// <-- Assign the texture to this entity
-	render2->SetFillColor(sf::Color::Transparent);
+	render->SetTexture(GameEngine::eTexture::Player1);  // <-- Assign the texture to this entity
 	render2->SetTexture(GameEngine::eTexture::Player2);  // <-- Assign the texture to this entity
 
 	render3->SetFillColor(sf::Color::Transparent);
