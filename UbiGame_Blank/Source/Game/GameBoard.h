@@ -19,6 +19,7 @@ namespace Game
 		bool IsGameOver() { return false; }
 	//protected:
 		void CreatePlayers();
+
 		GameEngine::Entity* player_1;
 		GameEngine::Entity* player_2;
 		GameEngine::Entity* circle;
