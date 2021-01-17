@@ -15,7 +15,7 @@ void Player2MovementComponent::Update()
 	const float dt = GameEngine::GameEngineMain::GetTimeDelta();
 
 	//By default the displacement is 0,0
-	sf::Vector2f centre{ 400.f, 300.f };
+	sf::Vector2f centre{ 400.f, 400.f };
 
 	//The amount of speed that we will apply when input is received
 	const float inputAmount = 100.0f;

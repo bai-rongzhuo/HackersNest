@@ -25,8 +25,8 @@ namespace GameEngine
 		switch (texture)
 		{
 		case eTexture::Player1: return "player1.png"; //<-- The name of the image on disk
-		case eTexture::Player2: return "player2.png"; //<-- The name of the image on disk
-		case eTexture::circle: return "circle.png";
+		case eTexture::Player2: return "player1.png"; //<-- The name of the image on disk
+		case eTexture::circle: return "circle2b.png";
 		}
 		return "UnknownTexType";
 	}
