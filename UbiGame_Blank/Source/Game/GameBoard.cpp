@@ -2,6 +2,7 @@
 #include "GameEngine/EntitySystem/Components/SpriteRenderComponent.h"
 #include "Game/Components/Player1MovementComponent.h"
 #include "Game/Components/Player2MovementComponent.h"
+#include "Game/Components/BallMovementComponent.h"
 #include "GameEngine/GameEngineMain.h"
 #include "GameEngine/EntitySystem/Components/SpriteRenderComponent.h" 
 
@@ -67,4 +68,5 @@ void Game::GameBoard::CreatePlayers()
 
 	player_1->AddComponent<Game::Player1MovementComponent>();
 	player_2->AddComponent<Game::Player2MovementComponent>();
+	ball->AddComponent<Game::BallMovementComponent>();
 }
