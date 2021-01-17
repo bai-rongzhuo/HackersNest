@@ -9,7 +9,7 @@
 using namespace Game;
 
 GameBoard::GameBoard()
-	:player_1(nullptr), player_2(nullptr), circle(nullptr)
+	:player_1(nullptr), player_2(nullptr), circle(nullptr), ball(nullptr)
 {
 	CreatePlayers();
 }
@@ -31,10 +31,12 @@ void Game::GameBoard::CreatePlayers()
 	player_1 = new GameEngine::Entity();
 	player_2 = new GameEngine::Entity();
 	circle = new GameEngine::Entity();
+	ball = new GameEngine::Entity();
 
 	GameEngine::GameEngineMain::GetInstance()->AddEntity(player_1);
 	GameEngine::GameEngineMain::GetInstance()->AddEntity(player_2);
 	GameEngine::GameEngineMain::GetInstance()->AddEntity(circle);
+	GameEngine::GameEngineMain::GetInstance()->AddEntity(ball);
 
 	player_1->SetPos(sf::Vector2f(200.f, 400.f));
 	player_1->SetRotation(0);
@@ -45,9 +47,13 @@ void Game::GameBoard::CreatePlayers()
 	circle->SetPos(sf::Vector2f(400.f, 400.f));
 	circle->SetSize(sf::Vector2f(500.f, 500.f));
 
+	ball->SetPos(sf::Vector2f(400.f, 400.f));
+	ball->SetSize(sf::Vector2f(20.f, 20.f));
+
 	GameEngine::SpriteRenderComponent* render = static_cast<GameEngine::SpriteRenderComponent*>(player_1->AddComponent<GameEngine::SpriteRenderComponent>());
 	GameEngine::SpriteRenderComponent* render2 = static_cast<GameEngine::SpriteRenderComponent*>(player_2->AddComponent<GameEngine::SpriteRenderComponent>());
 	GameEngine::SpriteRenderComponent* render3 = circle->AddComponent<GameEngine::SpriteRenderComponent>();
+	GameEngine::SpriteRenderComponent* render4 = ball->AddComponent<GameEngine::SpriteRenderComponent>();
 
 	render->SetTexture(GameEngine::eTexture::Player1);  // <-- Assign the texture to this entity
 	render2->SetTexture(GameEngine::eTexture::Player2);  // <-- Assign the texture to this entity
@@ -55,6 +61,9 @@ void Game::GameBoard::CreatePlayers()
 	render3->SetFillColor(sf::Color::Transparent);
 	render3->SetTexture(GameEngine::eTexture::circle);
 	render3->SetZLevel(-10);
+
+	render4->SetFillColor(sf::Color::Transparent);
+	render4->SetTexture(GameEngine::eTexture::ball);
 
 	player_1->AddComponent<Game::Player1MovementComponent>();
 	player_2->AddComponent<Game::Player2MovementComponent>();
