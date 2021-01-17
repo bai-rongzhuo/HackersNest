@@ -7,29 +7,40 @@ using namespace Game;
 
 void Player2MovementComponent::Update()
 {
-    Component::Update();
+	Component::Update();
 
-    //Grabs how much time has passed since last frame
-    const float dt = GameEngine::GameEngineMain::GetTimeDelta();
+	const float pi = 3.14159265358979323846;
 
-    //By default the displacement is 0,0
-    sf::Vector2f displacement{ 0.0f,0.0f };
+	//Grabs how much time has passed since last frame
+	const float dt = GameEngine::GameEngineMain::GetTimeDelta();
 
-    //The amount of speed that we will apply when input is received
-    const float inputAmount = 100.0f;
+	//By default the displacement is 0,0
+	sf::Vector2f centre{ 400.f, 300.f };
 
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
-    {
-        displacement.y -= inputAmount * dt;
-    }
+	//The amount of speed that we will apply when input is received
+	const float inputAmount = 100.0f;
 
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
-    {
-        displacement.y += inputAmount * dt;
-    }
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
+	{
+		degrees += inputAmount * dt;
+		if (degrees > 165.f) {
+			degrees = 165.f;
+		}
+	}
 
-    //Update the entity position
-    GetEntity()->SetPos(GetEntity()->GetPos() + displacement);
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
+	{
+		degrees -= inputAmount * dt;
+		if (degrees < 15.f) {
+			degrees = 15.f;
+		}
+	}
+
+	sf::Vector2f displacement = centre + sf::Vector2f{ 200 * sin(degrees*pi / 180), 200 * cos(degrees*pi / 180) };
+
+	//Update the entity position
+	GetEntity()->SetPos(displacement);
+	GetEntity()->SetRotation(90.f - degrees);
 }
 
 void Player2MovementComponent::OnAddToWorld() {}

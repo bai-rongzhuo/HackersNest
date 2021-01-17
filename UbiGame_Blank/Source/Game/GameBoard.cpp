@@ -1,5 +1,5 @@
 #include "GameBoard.h"
-
+#include "GameEngine/EntitySystem/Components/SpriteRenderComponent.h"
 #include "Game/Components/Player1MovementComponent.h"
 #include "Game/Components/Player2MovementComponent.h"
 #include "GameEngine/GameEngineMain.h"
@@ -33,13 +33,18 @@ void Game::GameBoard::CreatePlayers()
 	GameEngine::GameEngineMain::GetInstance()->AddEntity(player_2);
 
 	player_1->SetPos(sf::Vector2f(200.f, 300.f));
-	player_1->SetSize(sf::Vector2f(10.f, 200.f));
+	//player_1->SetSize(sf::Vector2f(10.f, 105.f));
+	player_1->SetRotation(0);
 
 	player_2->SetPos(sf::Vector2f(600.f, 300.f));
-	player_2->SetSize(sf::Vector2f(10.f, 200.f));
+	//player_2->SetSize(sf::Vector2f(10.f, 105.f));
+	player_2->SetRotation(0);
 
-	GameEngine::RenderComponent* render = static_cast<GameEngine::RenderComponent*>(player_1->AddComponent<GameEngine::RenderComponent>());
-	GameEngine::RenderComponent* render2 = static_cast<GameEngine::RenderComponent*>(player_2->AddComponent<GameEngine::RenderComponent>());
+	GameEngine::SpriteRenderComponent* render = static_cast<GameEngine::SpriteRenderComponent*>(player_1->AddComponent<GameEngine::SpriteRenderComponent>());
+	GameEngine::SpriteRenderComponent* render2 = static_cast<GameEngine::SpriteRenderComponent*>(player_2->AddComponent<GameEngine::SpriteRenderComponent>());
+	
+	render->SetTexture(GameEngine::eTexture::Player1);  // <-- Assign the texture to this entity
+	render2->SetTexture(GameEngine::eTexture::Player2);  // <-- Assign the texture to this entity
 
 	render->SetFillColor(sf::Color::White);
 	player_1->AddComponent<Game::Player1MovementComponent>();
