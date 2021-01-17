@@ -47,58 +47,74 @@ void CollidablePhysicsComponent::Update()
 			continue;
 
 		const float pi = 3.14159265358979323846;
-
-		sf::Vector2f pos = GetEntity()->GetPos();
-		float angle = (pos.y - 400 || pos.x - 400) ? atan2(pos.x - 400, 400 - pos.y) * 180 / pi : 0; // errorproofing this if the ball ends up in the middle because atan2 throws errors in that case
-		//also note the coords are rotated ccw 90 degrees to make existing angle coordinates easier to work with
-		float distance = sqrt(pow(pos.y - 400, 2) + pow(pos.x - 400, 2));
-		std::cout << angle << " " << distance << std::endl;
-		//change these if dimensions change
-		float circleRadius = 200;
-		float ballRadius = 10;
-		float bounceAngleFactor = 1; // increase to exaggerate the bounce angle
-		if (distance >= circleRadius - ballRadius && distance <= circleRadius) {
-			if (colComponent->GetEntity()->GetComponent< Game::Player1MovementComponent >() != nullptr) {
-				float diff = colComponent->GetEntity()->GetComponent< Game::Player1MovementComponent >()->degrees + angle;
-				if (diff >= -15 && diff <= 15) {
-					// collision happens; let it bounce
-					// positive diff means ccw bounce
-					GetEntity()->GetComponent< Game::BallMovementComponent >()->degrees += diff * bounceAngleFactor; 
-				}
-			}
-
-			if (colComponent->GetEntity()->GetComponent< Game::Player2MovementComponent >() != nullptr) {
-				float diff = colComponent->GetEntity()->GetComponent< Game::Player2MovementComponent >()->degrees - angle;
-				if (diff >= -15 && diff <= 15) {
-					// collision happens; let it bounce
-					// positive diff means cw bounce
-					GetEntity()->GetComponent< Game::BallMovementComponent >()->degrees -= diff * bounceAngleFactor;
-				}
-			}
-		}
-
-		/*AABBRect intersection;
+		AABBRect intersection;
 		AABBRect myBox = GetWorldAABB();
 		AABBRect colideBox = colComponent->GetWorldAABB();
 		if (myBox.intersects(colideBox, intersection))
 		{
-			sf::Vector2f pos = GetEntity()->GetPos();
-			if (intersection.width < intersection.height)
-			{
-				if (myBox.left < colideBox.left)
-					pos.x -= intersection.width;
-				else
-					pos.x += intersection.width;
-			}
-			else
-			{
-				if (myBox.top < colideBox.top)
-					pos.y -= intersection.height;
-				else
-					pos.y += intersection.height;
-			}
+			//sf::Vector2f pos = GetEntity()->GetPos();
+			//if (intersection.width < intersection.height)
+			//{
+			//	if (myBox.left < colideBox.left)
+			//		pos.x -= intersection.width;
+			//	else
+			//		pos.x += intersection.width;
+			//}
+			//else
+			//{
+			//	if (myBox.top < colideBox.top)
+			//		pos.y -= intersection.height;
+			//	else
+			//		pos.y += intersection.height;
+			//}
 
-			GetEntity()->SetPos(pos);
-		}*/
+			float x = GetEntity()->GetPos().x;
+			float y = GetEntity()->GetPos().y;
+
+			float deltX = abs(x - 400);
+			float deltY = abs(y - 400);
+			//std::cout << x << std::endl;
+
+			const float pi = 3.14159265358979323846;
+
+			float deg = atan(x / y);
+			deg = (deg * 180) / pi;
+			float incidentDeg = 90 - GetEntity()->GetDeg();
+			float diff = abs(deg - incidentDeg);
+			float reflectDeg = 0.f;
+			if (GetEntity()->GetDeg() < 90) {
+				float incidentDeg = 90 - GetEntity()->GetDeg();
+				float diff = abs(deg - incidentDeg);
+				  reflectDeg = 180 + diff;
+			}
+			else if (GetEntity()->GetDeg() < 180) {
+				float incidentDeg = GetEntity()->GetDeg() - 90;
+				float diff = abs(deg - incidentDeg);
+				 reflectDeg = diff;
+			}
+			else if (GetEntity()->GetDeg() < 270) {
+				float incidentDeg = GetEntity()->GetDeg() - 180;
+				float diff = abs(deg - incidentDeg);
+				 reflectDeg = diff;
+			}
+			else {
+				float incidentDeg = GetEntity()->GetDeg() - 270;
+				float diff = abs(deg - incidentDeg);
+				 reflectDeg = 180 + diff;
+			}
+			if (GetEntity()->GetPos().y > 700 && GetEntity()->GetPos().x > 400 && GetEntity()->GetPos().x < 800) {
+				reflectDeg = 210;
+			}
+			if (GetEntity()->GetPos().y > 700 && GetEntity()->GetPos().x <= 400 && GetEntity()->GetPos().x > 0 ) {
+				reflectDeg = 270;
+			}
+			if (GetEntity()->GetPos().y < 100 && GetEntity()->GetPos().x > 400 && GetEntity()->GetPos().x < 800) {
+				reflectDeg = 120;
+			}
+			if (GetEntity()->GetPos().y < 100 && GetEntity()->GetPos().x <= 400 && GetEntity()->GetPos().x > 0) {
+				reflectDeg = 70;
+			}
+			GetEntity()->SetDeg(reflectDeg);
+		}
 	}
 }
