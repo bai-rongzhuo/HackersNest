@@ -154,11 +154,5 @@
     <Image Include="Resources\circle.png">
       <Filter>Resource Files</Filter>
     </Image>
-    <Image Include="..\..\..\Downloads\numbers.png">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="Resources\numbers.png">
-      <Filter>Resource Files</Filter>
-    </Image>
   </ItemGroup>
 </Project>
