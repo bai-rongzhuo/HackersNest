@@ -18,7 +18,7 @@ void BallMovementComponent::Update()
 	const float inputAmount = 100.0f;
 	float hypotenuse = inputAmount * dt;
 
-	float degrees = GetEntity()->GetDeg();
+	float degrees = GetEntity()->GetBallDeg();
 	float absDeg = degrees;
 	if (degrees > 90 && degrees <= 180) {
 		absDeg = 180 - degrees;

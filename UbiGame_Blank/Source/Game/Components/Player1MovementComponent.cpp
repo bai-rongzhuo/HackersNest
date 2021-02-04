@@ -22,26 +22,26 @@ void Player1MovementComponent::Update()
 
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::W))
     {
-		degrees += inputAmount * dt;
-		if (degrees > 166.f) {
-			degrees = 166.f;
+		p1Deg += inputAmount * dt;
+		if (p1Deg > 166.f) {
+			p1Deg = 166.f;
 		}
 	}
 
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::S))
     {
-		degrees -= inputAmount * dt;
-		if (degrees < 13.f) {
-			degrees = 13.f;
+		p1Deg -= inputAmount * dt;
+		if (p1Deg < 13.f) {
+			p1Deg = 13.f;
 		}
 	}
 
-	sf::Vector2f displacement = centre + sf::Vector2f{ 250 * -sin(degrees*pi / 180), 250 * cos(degrees*pi / 180) };
+	sf::Vector2f displacement = centre + sf::Vector2f{ 250 * -sin(p1Deg*pi / 180), 250 * cos(p1Deg*pi / 180) };
 	//std::cout << displacement.x << " " << displacement.y << std::endl;
 
     //Update the entity position
     GetEntity()->SetPos(displacement);
-	GetEntity()->SetRotation(90.f + degrees);
+	GetEntity()->SetRotation(90.f + p1Deg);
 }
 
 void Player1MovementComponent::OnAddToWorld() {}

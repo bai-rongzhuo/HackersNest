@@ -70,51 +70,79 @@ void CollidablePhysicsComponent::Update()
 
 			float x = GetEntity()->GetPos().x;
 			float y = GetEntity()->GetPos().y;
-
-			float deltX = abs(x - 400);
-			float deltY = abs(y - 400);
-			//std::cout << x << std::endl;
-
-			const float pi = 3.14159265358979323846;
-
-			float deg = atan(x / y);
-			deg = (deg * 180) / pi;
-			float incidentDeg = 90 - GetEntity()->GetDeg();
-			float diff = abs(deg - incidentDeg);
-			float reflectDeg = 0.f;
-			if (GetEntity()->GetDeg() < 90) {
-				float incidentDeg = 90 - GetEntity()->GetDeg();
-				float diff = abs(deg - incidentDeg);
-				  reflectDeg = 180 + diff;
+			float deg = GetEntity()->GetBallDeg();
+			if (deg <= 90) {
+				float alpha = 180 - deg - GetEntity()->GetP2Deg();
+				GetEntity()->SetBallDeg(GetEntity()->GetP2Deg() +  alpha);
 			}
-			else if (GetEntity()->GetDeg() < 180) {
-				float incidentDeg = GetEntity()->GetDeg() - 90;
-				float diff = abs(deg - incidentDeg);
-				 reflectDeg = diff;
+			else if (deg <= 180) {
+				float alpha = 120 - (180 - deg) - GetEntity()->GetP1Deg();
+				if (alpha > GetEntity()->GetP1Deg()) {
+					GetEntity()->SetBallDeg(360 - (alpha - GetEntity()->GetP1Deg()));
+				}
+				else {
+					GetEntity()->SetBallDeg(GetEntity()->GetP1Deg() - alpha);
+				}
 			}
-			else if (GetEntity()->GetDeg() < 270) {
-				float incidentDeg = GetEntity()->GetDeg() - 180;
-				float diff = abs(deg - incidentDeg);
-				 reflectDeg = diff;
+			else if (deg <= 270) {
+				float alpha = 120 - (deg - 180) - (180 - GetEntity()->GetP1Deg());
+				if (alpha > 90) {
+					GetEntity()->SetBallDeg(alpha);
+				}
+				else {
+					GetEntity()->SetBallDeg(360 - (120 - GetEntity()->GetP1Deg() - alpha));
+				}
 			}
 			else {
-				float incidentDeg = GetEntity()->GetDeg() - 270;
-				float diff = abs(deg - incidentDeg);
-				 reflectDeg = 180 + diff;
+				float alpha = 120 - (360 - deg) - GetEntity()->GetP2Deg();
+				GetEntity()->SetBallDeg(GetEntity()->GetP2Deg() + 90 + (90 - alpha));
 			}
-			if (GetEntity()->GetPos().y > 700 && GetEntity()->GetPos().x > 400 && GetEntity()->GetPos().x < 800) {
-				reflectDeg = 210;
-			}
-			if (GetEntity()->GetPos().y > 700 && GetEntity()->GetPos().x <= 400 && GetEntity()->GetPos().x > 0 ) {
-				reflectDeg = 270;
-			}
-			if (GetEntity()->GetPos().y < 100 && GetEntity()->GetPos().x > 400 && GetEntity()->GetPos().x < 800) {
-				reflectDeg = 120;
-			}
-			if (GetEntity()->GetPos().y < 100 && GetEntity()->GetPos().x <= 400 && GetEntity()->GetPos().x > 0) {
-				reflectDeg = 70;
-			}
-			GetEntity()->SetDeg(reflectDeg);
+				
+				
+			//float deltX = abs(x - 400);
+			//float deltY = abs(y - 400);
+			////std::cout << x << std::endl;
+
+			//const float pi = 3.14159265358979323846;
+
+			//float deg = atan(x / y);
+			//deg = (deg * 180) / pi;
+			//float incidentDeg = 90 - GetEntity()->GetDeg();
+			//float diff = abs(deg - incidentDeg);
+			//float reflectDeg = 0.f;
+			//if (GetEntity()->GetDeg() < 90) {
+			//	float incidentDeg = 90 - GetEntity()->GetDeg();
+			//	float diff = abs(deg - incidentDeg);
+			//	  reflectDeg = 180 + diff;
+			//}
+			//else if (GetEntity()->GetDeg() < 180) {
+			//	float incidentDeg = GetEntity()->GetDeg() - 90;
+			//	float diff = abs(deg - incidentDeg);
+			//	 reflectDeg = diff;
+			//}
+			//else if (GetEntity()->GetDeg() < 270) {
+			//	float incidentDeg = GetEntity()->GetDeg() - 180;
+			//	float diff = abs(deg - incidentDeg);
+			//	 reflectDeg = diff;
+			//}
+			//else {
+			//	float incidentDeg = GetEntity()->GetDeg() - 270;
+			//	float diff = abs(deg - incidentDeg);
+			//	 reflectDeg = 180 + diff;
+			//}
+			//if (GetEntity()->GetPos().y > 700 && GetEntity()->GetPos().x > 400 && GetEntity()->GetPos().x < 800) {
+			//	reflectDeg = 210;
+			//}
+			//if (GetEntity()->GetPos().y > 700 && GetEntity()->GetPos().x <= 400 && GetEntity()->GetPos().x > 0 ) {
+			//	reflectDeg = 270;
+			//}
+			//if (GetEntity()->GetPos().y < 100 && GetEntity()->GetPos().x > 400 && GetEntity()->GetPos().x < 800) {
+			//	reflectDeg = 120;
+			//}
+			//if (GetEntity()->GetPos().y < 100 && GetEntity()->GetPos().x <= 400 && GetEntity()->GetPos().x > 0) {
+			//	reflectDeg = 70;
+			//}
+
 		}
 	}
 }

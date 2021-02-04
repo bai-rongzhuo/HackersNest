@@ -20,12 +20,16 @@ namespace GameEngine
 		sf::Vector2f GetPos()  const { return m_pos; }
 		sf::Vector2f GetSize() const { return m_size; }
 		float		 GetRot()  const { return m_rotation; }
-		float		 GetDeg() { return degrees; }
+		float		 GetBallDeg() { return ballDeg; }
+		float		 GetP1Deg() { return p1Deg; }
+		float		 GetP2Deg() { return p2Deg; }
 		
 		void		 SetPos(sf::Vector2f pos)   { m_pos = pos; }
 		void		 SetSize(sf::Vector2f size) { m_size = size; }
 		void	     SetRotation(float rotation) { m_rotation = rotation; }	
-		void         SetDeg(float deg) { degrees = deg; };
+		void         SetBallDeg(float deg) { ballDeg = deg; };
+		void         SetP1Deg(float deg) { p1Deg = deg; };
+		void         SetP2Deg(float deg) { p2Deg = deg; };
 
 		//Components
 		template <class T>
@@ -73,6 +77,8 @@ namespace GameEngine
 		sf::Vector2f		   m_pos;
 		sf::Vector2f		   m_size;		
 		float				   m_rotation;
-		float				   degrees = 20.0f;
+		float				   ballDeg = 20.0f;
+		float				   p1Deg = 20.0f;
+		float				   p2Deg = 20.0f;
 	};
 }
